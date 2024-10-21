@@ -73,7 +73,7 @@ int main()
             //add to token list
             tokens.push_back(results[i]);
 
-            std::cout << results[i].getWord() << " type: " << results[i].getType() << std::endl;
+            std::cout << results[i].getWord();
         }
     }
 
@@ -103,6 +103,14 @@ std::vector<Token> lexer(std::string line) {
             if (isalpha(line[i])) {
                 //set counter
                 start = i;
+            } else {
+                //not alpha
+                
+                std::string other = std::string(1, line[i]);
+                Token token(other, "other");
+
+                //push non-alpha to list
+                tokens.push_back(token);
             }
         }
             
@@ -129,7 +137,6 @@ std::vector<Token> lexer(std::string line) {
                     end = -1;
                 }
 
-                //tokenize non-alpha
                 std::string other = std::string(1, line[i]);
                 Token token(other, "other");
 
