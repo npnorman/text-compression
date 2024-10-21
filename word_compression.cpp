@@ -68,6 +68,9 @@ int main()
         //tokenize them
         std::vector<Token> results = lexer(current);
 
+        //add new line
+        results.push_back(Token("\n", "other"));
+
         //for token in result
         for (int i=0; i < results.size(); i++) {
             //add to token list
@@ -76,6 +79,8 @@ int main()
             std::cout << results[i].getWord();
         }
     }
+
+    tokens.pop_back();
 
     file.close();
 
@@ -105,7 +110,7 @@ std::vector<Token> lexer(std::string line) {
                 start = i;
             } else {
                 //not alpha
-                
+
                 std::string other = std::string(1, line[i]);
                 Token token(other, "other");
 
